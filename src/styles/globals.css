@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-	@apply bg-[slate-100] text-[#242526] dark:bg-[#1c1c1c] dark:transition-all dark:text-slate-50;
+	@apply bg-[slate-100] text-[#242526] dark:bg-[#1c1c1c] dark:transition-all dark:text-slate-50 w-full h-screen;
 }
 
 /* ===== Scrollbar CSS ===== */
