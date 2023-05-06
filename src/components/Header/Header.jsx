@@ -11,7 +11,7 @@ export default function Header() {
 					<img src={logo} alt='logo' className='pr-2' />
 					Notes
 				</div>
-				<div>
+				<div className='pl-0 md:pl-3'>
 					<Buttons />
 				</div>
 			</div>
