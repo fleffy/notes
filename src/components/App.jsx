@@ -31,20 +31,29 @@ export default function App() {
 		}
 	}
 
+	async function setActiveNote(id) {
+		await db.notes.update(id, { isActive: true })
+	}
+
 	function useNotes() {
 		const notes = useLiveQuery(() => db.notes.toArray())
 		return notes
 	}
 	const notes = useNotes()
 
+	const contextValue = {
+		addNote,
+		setActiveNote,
+	}
+
 	return (
-		<AppContext.Provider value={addNote}>
+		<AppContext.Provider value={contextValue}>
 			<div className='flex flex-col md:flex-row'>
 				<div className='flex flex-col'>
 					<Header />
 					<List notes={notes} />
 				</div>
-				<Workspace />
+				<Workspace activeNote={notes?.find((note) => note.isActive === true)} />
 			</div>
 		</AppContext.Provider>
 	)
