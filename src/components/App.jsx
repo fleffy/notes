@@ -31,15 +31,16 @@ export default function App() {
 		}
 	}
 
-	async function setActiveNote(id) {
-		await db.notes.update(id, { isActive: true })
-	}
-
 	function useNotes() {
 		const notes = useLiveQuery(() => db.notes.toArray())
 		return notes
 	}
 	const notes = useNotes()
+
+	async function setActiveNote(id) {
+		await db.notes.where('id').notEqual(id).modify({isActive: false})
+		await db.notes.update(id, { isActive: true })
+	}
 
 	const contextValue = {
 		addNote,

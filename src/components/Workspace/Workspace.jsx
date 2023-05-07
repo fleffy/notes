@@ -7,10 +7,11 @@ export default function Workspace({ activeNote }) {
 						title='edit title'
 						className='w-full overflow-hidden rounded-t-2xl bg-white p-4  text-lg font-bold text-slate-800 dark:bg-[#1c1c1c] dark:text-slate-50'
 					>
-						Note Title
+						{activeNote.title}
 					</button>
 					<textarea
 						className='h-full w-full resize-none rounded-b-2xl p-8 font-mono text-2xl text-slate-800 outline-none dark:bg-[#1c1c1c] dark:text-slate-50'
+						value={activeNote.text}
 						type='text'
 					/>
 				</div>
