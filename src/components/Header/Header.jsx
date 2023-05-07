@@ -21,7 +21,9 @@ export default function Header({ activeNote }) {
 					</AppContext.Provider>
 				</div>
 			</div>
-			<Searchbar />
+			<AppContext.Provider value={contextValue}>
+				<Searchbar />
+			</AppContext.Provider>
 			<DarkModeToggler />
 		</nav>
 	)

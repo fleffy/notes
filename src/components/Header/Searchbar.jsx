@@ -1,4 +1,9 @@
+import { useContext, useState } from 'react'
+import AppContext from '../../context'
+
 export default function Searchbar() {
+	const [searchText] = useState()
+	const { setSearchText } = useContext(AppContext)
 	return (
 		<form className='flex w-full items-center gap-3 rounded-lg bg-slate-200/40 px-4 py-1 transition-all dark:bg-gray-50/5'>
 			<svg width='20' height='20' viewBox='0 0 20 20'>
@@ -12,7 +17,10 @@ export default function Searchbar() {
 				className='h-[27px] w-max rounded-full bg-transparent p-2 py-4 outline-none transition-all'
 				aria-autocomplete='both'
 				maxLength='64'
+				placeholder='Seacrh Note..'
 				type='search'
+				value={searchText}
+				onChange={(e) => setSearchText(e.target.value)}
 			/>
 			<button type='reset' title='Clear the query' hidden>
 				<svg width='20' height='20' viewBox='0 0 20 20'>

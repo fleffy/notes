@@ -7,11 +7,12 @@ import AppContext from '../context'
 import { useLiveQuery } from 'dexie-react-hooks'
 
 export default function App() {
-	const [title, setTitle] = useState('Note title')
-	const [text, setText] = useState('Write here anything you want!')
+	const [title, setTitle] = useState('Your title here..')
+	const [text, setText] = useState('Type here anything you want!')
 	const [date, setDate] = useState(new Date().toLocaleString())
 	const [isActive, setIsActive] = useState(false)
 	const [status, setStatus] = useState('')
+	const [searchText, setSearchText] = useState()
 
 	async function addNote() {
 		try {
@@ -61,14 +62,15 @@ export default function App() {
 		updateNote,
 		updateNoteTitle,
 		deleteNote,
+		setSearchText,
 	}
 
 	return (
 		<AppContext.Provider value={contextValue}>
-			<div className='flex flex-col md:flex-row'>
+			<div className='flex flex-col lg:flex-row'>
 				<div className='flex flex-col'>
 					<Header activeNote={notes?.find((note) => note.isActive === true)} />
-					<List notes={notes} />
+					<List notes={notes} searchText={searchText} />
 				</div>
 				<Workspace activeNote={notes?.find((note) => note.isActive === true)} />
 			</div>

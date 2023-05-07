@@ -24,7 +24,7 @@ export default function DeleteModal({ activeNote }) {
 
 	return (
 		<div>
-			<div className='fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center transition-all'>
+			<div className='fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center p-3 transition-all md:p-0'>
 				<div className='rounded-xl bg-slate-50 p-8 shadow-lg'>
 					<h2 className='mb-4 text-lg font-semibold text-slate-800'>
 						Are you sure you want to delete this note?

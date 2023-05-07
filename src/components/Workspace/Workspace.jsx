@@ -6,10 +6,11 @@ export default function Workspace({ activeNote }) {
 	return (
 		<aside className='h-screen w-full transition-all'>
 			{activeNote ? (
-				<div className='flex h-full flex-col gap-2 overflow-y-auto rounded-t-2xl bg-gray-200 p-2 dark:bg-[#4338ca]/60 md:rounded-l-2xl md:rounded-tr-none'>
+				<div className='flex h-full flex-col gap-2 overflow-y-auto rounded-t-2xl bg-gray-200 p-2 dark:bg-[#4338ca]/60 lg:rounded-l-2xl lg:rounded-tr-none'>
 					<input
 						title='edit title'
-						className='w-full overflow-hidden rounded-t-2xl bg-white p-4  font-mono text-2xl font-bold text-slate-500 outline-none dark:bg-[#1c1c1c] dark:text-slate-50'
+						placeholder='Your title here..'
+						className='w-full overflow-hidden rounded-t-2xl bg-white p-4 px-8  font-mono text-2xl font-bold text-slate-500 outline-none dark:bg-[#1c1c1c] dark:text-slate-50'
 						value={activeNote.title}
 						onChange={(e) => {
 							updateNoteTitle(activeNote.id, e.target.value)
@@ -23,6 +24,7 @@ export default function Workspace({ activeNote }) {
 							updateNote(activeNote.id, e.target.value)
 						}}
 						type='text'
+						placeholder='Type here anything you want!'
 					/>
 				</div>
 			) : (
