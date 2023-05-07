@@ -10,7 +10,7 @@ export default function App() {
 	const [title, setTitle] = useState('Note title')
 	const [text, setText] = useState('Write here anything you want!')
 	const [date, setDate] = useState(new Date().toLocaleString())
-	const [isActive, setIsActive] = useState(false)
+	const [isActive] = useState(false)
 	const [status, setStatus] = useState('')
 
 	async function addNote() {
@@ -42,16 +42,21 @@ export default function App() {
 		await db.notes.update(id, { isActive: true })
 	}
 
+	function updateNote(id, newText) {
+		db.notes.update(id, {text: newText})
+	}
+
 	const contextValue = {
 		addNote,
 		setActiveNote,
+		updateNote,
 	}
 
 	return (
 		<AppContext.Provider value={contextValue}>
 			<div className='flex flex-col md:flex-row'>
 				<div className='flex flex-col'>
-					<Header />
+					<Header activeNote={notes?.find((note) => note.isActive === true)} />
 					<List notes={notes} />
 				</div>
 				<Workspace activeNote={notes?.find((note) => note.isActive === true)} />

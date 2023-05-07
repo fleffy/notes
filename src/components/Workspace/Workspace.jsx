@@ -1,4 +1,9 @@
-export default function Workspace({ activeNote }) {
+import { useContext } from 'react'
+import AppContext from '../../context'
+
+export default function Workspace({activeNote}) {
+	const {updateNote} = useContext(AppContext)
+
 	return (
 		<aside className='h-screen w-full transition-all'>
 			{activeNote ? (
@@ -12,6 +17,9 @@ export default function Workspace({ activeNote }) {
 					<textarea
 						className='h-full w-full resize-none rounded-b-2xl p-8 font-mono text-2xl text-slate-800 outline-none dark:bg-[#1c1c1c] dark:text-slate-50'
 						value={activeNote.text}
+						onChange={(e) => {
+							updateNote(activeNote.id, e.target.value)
+						}}
 						type='text'
 					/>
 				</div>
