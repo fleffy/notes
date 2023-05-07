@@ -40,8 +40,8 @@ export default function App() {
 	const notes = useNotes()
 
 	async function setActiveNote(id) {
-		await db.notes.where('id').notEqual(id).modify({ isActive: false })
 		await db.notes.update(id, { isActive: true })
+		await db.notes.where('id').notEqual(id).modify({ isActive: false })
 	}
 
 	function updateNote(id, newText) {

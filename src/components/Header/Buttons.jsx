@@ -16,13 +16,14 @@ export default function Buttons({ activeNote }) {
 		<div>
 			<div className='flex gap-3'>
 				<button
-					className='rounded-lg border-[1px] p-3 transition-all hover:bg-[#4338ca] hover:text-white'
+					className='rounded-lg border-[1px] p-3 transition-all animate-in fade-in-5
+					slide-in-from-top-8 duration-1000 hover:bg-[#4338ca] hover:text-white'
 					onClick={() => addNote()}
 				>
 					<BiPlus />
 				</button>
 				<button
-					className='rounded-lg border-[1px] p-3 transition-all hover:bg-[#4338ca] hover:text-white'
+					className='rounded-lg border-[1px] p-3 transition-all animate-in fade-in-5 slide-in-from-bottom-8 duration-1000 hover:bg-[#4338ca] hover:text-white'
 					onClick={
 						activeNote
 							? () => setOpenModal(true)

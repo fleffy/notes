@@ -5,7 +5,7 @@ export default function Searchbar() {
 	const [searchText] = useState()
 	const { setSearchText } = useContext(AppContext)
 	return (
-		<form className='flex w-full items-center gap-3 rounded-lg bg-slate-200/40 px-4 py-1 transition-all dark:bg-gray-50/5'>
+		<form className='flex w-full items-center gap-3 rounded-lg bg-slate-200/40 px-4 py-1 transition-all animate-in fade-in-5 slide-in-from-right-4 duration-1000 dark:bg-[#282828]'>
 			<svg width='20' height='20' viewBox='0 0 20 20'>
 				<path
 					d='M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z'

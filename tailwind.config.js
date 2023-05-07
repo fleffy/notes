@@ -9,8 +9,12 @@ module.exports = {
 			fontFamily: {
 				body: ['Poppins', 'sans-serif'],
 			},
+			transitionDuration: {
+				'1500': '1500ms',
+				'2000': '2000ms',
+			},
 		},
 	},
 	darkMode: 'class',
-	plugins: [],
+	plugins: [require('tailwindcss-animate')],
 }
