@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 import AppContext from '../../context'
-import { BiPlus, BiTrash, BiPencil } from 'react-icons/bi'
+import { BiPlus, BiTrash } from 'react-icons/bi'
 import DeleteModal from './DeleteModal'
 
 export default function Buttons({ activeNote }) {
@@ -30,9 +30,6 @@ export default function Buttons({ activeNote }) {
 					}
 				>
 					<BiTrash />
-				</button>
-				<button className='rounded-lg border-[1px] p-3 transition-all hover:bg-[#4338ca] hover:text-white'>
-					<BiPencil />
 				</button>
 			</div>
 			{openModal ? (
