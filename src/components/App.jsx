@@ -10,7 +10,7 @@ export default function App() {
 	const [title, setTitle] = useState('Note title')
 	const [text, setText] = useState('Write here anything you want!')
 	const [date, setDate] = useState(new Date().toLocaleString())
-	const [isActive] = useState(false)
+	const [isActive, setIsActive] = useState(false)
 	const [status, setStatus] = useState('')
 
 	async function addNote() {
@@ -25,7 +25,8 @@ export default function App() {
 			setTitle('Note title')
 			setText('Write here anything you want!')
 			setDate(new Date().toLocaleString())
-			console.log('successfully added this note ->', id)
+			await db.notes.where('id').notEqual(id).modify({ isActive: false })
+			setIsActive(true)
 		} catch (error) {
 			setStatus(`[${status}] Failed to add ${title}: ${error}`)
 		}
@@ -38,18 +39,28 @@ export default function App() {
 	const notes = useNotes()
 
 	async function setActiveNote(id) {
-		await db.notes.where('id').notEqual(id).modify({isActive: false})
+		await db.notes.where('id').notEqual(id).modify({ isActive: false })
 		await db.notes.update(id, { isActive: true })
 	}
 
 	function updateNote(id, newText) {
-		db.notes.update(id, {text: newText})
+		db.notes.update(id, { text: newText })
+	}
+
+	function updateNoteTitle(id, newTitle) {
+		db.notes.update(id, { title: newTitle })
+	}
+
+	function deleteNote(id) {
+		id ? db.notes.delete(id) : console.log('select something :/')
 	}
 
 	const contextValue = {
 		addNote,
 		setActiveNote,
 		updateNote,
+		updateNoteTitle,
+		deleteNote,
 	}
 
 	return (

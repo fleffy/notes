@@ -1,20 +1,47 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import AppContext from '../../context'
 import { BiPlus, BiTrash, BiPencil } from 'react-icons/bi'
+import DeleteModal from './DeleteModal'
 
 export default function Buttons({ activeNote }) {
-	const { addNote } = useContext(AppContext)
+	const { addNote, deleteNote } = useContext(AppContext)
+	const [openModal, setOpenModal] = useState(false)
+
+	const contextButtons = {
+		deleteNote,
+		setOpenModal,
+	}
+
 	return (
-		<div className='flex gap-3'>
-			<button className='rounded-lg border-[1px] p-3 transition-all hover:bg-[#4338ca] hover:text-white'>
-				<BiPlus onClick={() => addNote()} />
-			</button>
-			<button className='rounded-lg border-[1px] p-3 transition-all hover:bg-[#4338ca] hover:text-white' onClick={() => console.log(activeNote.id, 'deleted')}>
-				<BiTrash />
-			</button>
-			<button className='rounded-lg border-[1px] p-3 transition-all hover:bg-[#4338ca] hover:text-white'>
-				<BiPencil />
-			</button>
+		<div>
+			<div className='flex gap-3'>
+				<button
+					className='rounded-lg border-[1px] p-3 transition-all hover:bg-[#4338ca] hover:text-white'
+					onClick={() => addNote()}
+				>
+					<BiPlus />
+				</button>
+				<button
+					className='rounded-lg border-[1px] p-3 transition-all hover:bg-[#4338ca] hover:text-white'
+					onClick={
+						activeNote
+							? () => setOpenModal(true)
+							: () => console.log('select something :/')
+					}
+				>
+					<BiTrash />
+				</button>
+				<button className='rounded-lg border-[1px] p-3 transition-all hover:bg-[#4338ca] hover:text-white'>
+					<BiPencil />
+				</button>
+			</div>
+			{openModal ? (
+				<AppContext.Provider value={contextButtons}>
+					<DeleteModal activeNote={activeNote} />
+				</AppContext.Provider>
+			) : (
+				<></>
+			)}
 		</div>
 	)
 }

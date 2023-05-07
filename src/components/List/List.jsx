@@ -7,7 +7,7 @@ export default function List({ notes }) {
 	const contextValue = useContext(AppContext)
 	return (
 		<AppContext.Provider value={contextValue}>
-			<div className='flex flex-col pb-5 md:pb-0'>
+			<div className='flex max-h-[87vh] flex-col overflow-y-auto pb-5 md:pb-0'>
 				{notes?.map((note) => (
 					<ListItem
 						noteTitle={note.title}

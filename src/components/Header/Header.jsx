@@ -6,7 +6,7 @@ import { DarkModeToggler } from '../DarkMode/DarkModeToggler'
 import { useContext } from 'react'
 import AppContext from '../../context'
 
-export default function Header({activeNote}) {
+export default function Header({ activeNote }) {
 	const contextValue = useContext(AppContext)
 	return (
 		<nav className='flex flex-col items-start justify-between gap-3 p-6 md:flex-row md:items-center'>
