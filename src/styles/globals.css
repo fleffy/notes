@@ -24,6 +24,6 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-	@apply bg-indigo-300 dark:bg-indigo-700;
+	@apply bg-[#4338ca] dark:bg-[#4338ca];
 	border-radius: 16px;
 }

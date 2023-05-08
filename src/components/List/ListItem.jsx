@@ -10,7 +10,7 @@ export default function ListItem({
 }) {
 	const { setActiveNote } = useContext(AppContext)
 	return (
-		<button
+		<div
 			onClick={() => {
 				setActiveNote(noteId)
 			}}
@@ -30,6 +30,6 @@ export default function ListItem({
 				<div className='text-lg font-semibold'>{noteTitle}</div>
 			)}
 			<p className='text-sm opacity-75'>{noteTime}</p>
-		</button>
+		</div>
 	)
 }
