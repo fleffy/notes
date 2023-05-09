@@ -16,7 +16,7 @@ export default function ListItem({
 			}}
 			className={`${
 				noteActive
-					? `mx-4 my-2 scale-[0.98] rounded-xl bg-slate-100/75 p-4 px-8 text-left text-slate-500 shadow-sm transition-all hover:scale-[0.99] hover:bg-slate-200 dark:bg-[#4940ac]/60 dark:text-slate-50 dark:hover:bg-[#4338ca]`
+					? `mx-4 my-2 scale-[0.98] rounded-xl bg-slate-100/75 p-4 px-8 text-left text-slate-500 shadow-sm transition-all hover:scale-[0.99] hover:bg-slate-200 dark:bg-[#373172] dark:text-slate-50 dark:hover:bg-[#4940ac]`
 					: `mx-4 my-2 rounded-xl bg-slate-100 p-4 px-8 text-left text-slate-800 shadow-sm transition-all hover:scale-[0.99] hover:bg-slate-200 dark:bg-[#4338ca]/60 dark:text-slate-50 dark:hover:bg-[#4940ac]`
 			}`}
 		>
