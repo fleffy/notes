@@ -8,12 +8,17 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { DragDropContext } from '@hello-pangea/dnd'
 
 export default function App() {
-	const [title, setTitle] = useState('Your title here..')
+	const [title, setTitle] = useState('Note title')
 	const [text, setText] = useState('Type here anything you want!')
 	const [date, setDate] = useState(new Date().toLocaleString())
 	const [isActive, setIsActive] = useState(false)
 	const [status, setStatus] = useState('')
 	const [searchText, setSearchText] = useState()
+	const [listUpdateCounter, setListUpdateCounter] = useState(0)
+
+	function updateList() {
+		setListUpdateCounter((prevCount) => prevCount + 1)
+	}
 
 	useEffect(() => {
 		const notesOrder = JSON.parse(localStorage.getItem('notesOrder'))
@@ -50,6 +55,24 @@ export default function App() {
 	}
 	const notes = useNotes()
 
+	function sortNotes(notes) {
+		const notesOrder = JSON.parse(localStorage.getItem('notesOrder')) || []
+
+		if (!notes) {
+			return []
+		}
+
+		const sortedNotes = notes.sort((a, b) => {
+			const aIndex = notesOrder.indexOf(a.id)
+			const bIndex = notesOrder.indexOf(b.id)
+			return aIndex - bIndex
+		})
+
+		return sortedNotes
+	}
+
+	const sortedNotes = sortNotes(notes)
+
 	async function setActiveNote(id) {
 		await db.notes.update(id, { isActive: true })
 		await db.notes.where('id').notEqual(id).modify({ isActive: false })
@@ -72,6 +95,7 @@ export default function App() {
 
 	const onDragEnd = (result) => {
 		const { destination, source, draggableId } = result
+		const notesOrder = JSON.parse(localStorage.getItem('notesOrder'))
 
 		if (!destination) {
 			return
@@ -82,7 +106,11 @@ export default function App() {
 			return
 		}
 
-		// TODO
+		const newNotesOrder = [...notesOrder]
+		newNotesOrder.splice(source.index, 1)
+		newNotesOrder.splice(destination.index, 0, parseInt(draggableId))
+		localStorage.setItem('notesOrder', JSON.stringify(newNotesOrder))
+		updateList()
 	}
 
 	const contextValue = {
@@ -100,7 +128,11 @@ export default function App() {
 				<div className='flex flex-col'>
 					<Header activeNote={notes?.find((note) => note.isActive === true)} />
 					<DragDropContext onDragEnd={onDragEnd}>
-						<List notes={notes} searchText={searchText} />
+						<List
+							key={listUpdateCounter}
+							notes={sortedNotes}
+							searchText={searchText}
+						/>
 					</DragDropContext>
 				</div>
 				<Workspace activeNote={notes?.find((note) => note.isActive === true)} />

@@ -19,7 +19,7 @@ export default function List({ notes, searchText }) {
 					<div
 						{...provided.droppableProps}
 						ref={provided.innerRef}
-						className='flex max-h-[87vh] flex-col overflow-y-auto pb-5 animate-in fade-in-5 duration-2000 lg:pb-0'
+						className='flex max-h-[87vh] flex-col overflow-y-auto pb-5 lg:pb-0'
 					>
 						{filteredNotes?.map((note) => {
 							const index = notes.indexOf(note)
